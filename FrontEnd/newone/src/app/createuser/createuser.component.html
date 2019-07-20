@@ -1,0 +1,193 @@
+
+   <div class="container-fluid"
+      style="background-color:grey ;height:1400px;width:350px ; box-shadow: black 1px 3px 30px 2px">
+
+      <form [formGroup]="regform" style="margin-top: 10px">
+
+
+         <!-- firstname -->
+
+
+         <div class="form-group" style="margin-top: 100px">
+            <label style="margin-top: 15px">Enter FirstName</label>
+            <input [class.is-invalid]="regform.get('fname').invalid && regform.get('fname').touched"
+               placeholder="Enter First Name" formControlName="fname" type="text" class="form-control">
+
+         </div>
+
+
+         <!-- lastname -->
+
+
+         <div class="form-group">
+            <label>Enter lastname</label>
+            <input [class.is-invalid]="regform.get('lname').invalid && regform.get('lname').touched"
+               placeholder="Enter Last NAme" formControlName="lname" type="text" class="form-control">
+         </div>
+
+
+         <!-- gender  -->
+
+
+         <div class="form-group">
+            <input formControlName="gender" name="gender" value="Male" type="radio">Male
+            <input style="margin-left: 60px" formControlName="gender" name="gender" value="Female" type="radio">Female
+         </div>
+
+
+         <!-- Qualification    -->
+
+
+         <div class="form-group">
+            <label for="my-select">Qualification</label>
+            <select [class.is-invalid]="regform.get('qualification').invalid && regform.get('qualification').touched"
+               style="width:300px ; height:30px" formControlName="qualification" id="my-select" class="form-control">
+               <option value="" selected disabled hidden>Enter Qualification</option>
+               <option>Graduate</option>
+               <option>Post-Graduate</option>
+               <option>HSC</option>
+               <option>SSC</option>
+            </select>
+         </div>
+
+
+
+         <!-- email -->
+
+
+         <div class="form-group">
+            <label>Enter Email</label>
+            <input [class.is-invalid]="regform.get('email').invalid && regform.get('email').touched"
+               placeholder="abc@gmail.com" style="width:300px ; height:30px" formControlName="email" type="text"
+               class="form-control">
+         </div>
+
+
+         <!-- contact number -->
+
+
+         <div>
+            <label>Contact Number</label>
+            <input  placeholder="phone number" [class.is-invalid]="regform.get('contact').invalid && regform.get('contact').touched"
+               formControlName="contact" style="width:300px ; height:30px" type="number" class="form-control">
+            <small *ngIf="err">Contact Must be 10 Digit</small>
+         </div>
+
+
+         <!-- birthdate   -->
+
+
+         <div class="form-group" style=" margin-top: 15px">
+            <label>BirthDate<input style="height:35px" type="date" formControlName="calnder"
+                  style="width:300px ; height:30px" (change)=setage($event.target.value) class="form-control"></label>
+            <label>Current age is <input style="width:25px; height:25px ;margin-left: 10px" readonly type="text"
+                  formControlName="setage"></label>
+            <br><small *ngIf="temp" class="text-danger">Enter Valid birthdate</small>
+         </div>
+
+
+         <!-- hobbies -->
+
+
+         <div>Hobbies<br>
+
+            <label > <input type="checkbox"  formControlName="isSinging" value="singing">
+               Singing </label>
+            <label  > <input type="checkbox" style="margin-left: 25px"
+                  formControlName="isReading" value="reading"> Reading </label>
+            <label > <input type="checkbox"  formControlName="isTravelling"
+                  value="travelling"> Travelling </label>
+            <label > <input type="checkbox"  formControlName="isCooking"
+                  value="cooking">
+               Cooking </label>
+            <label > <input type="checkbox"  formControlName="isDancing" value="dancing">
+               Dancing </label>
+            <label > <input type="checkbox"  formControlName="isSwimming"
+                  value="swimming"> Swimming </label>
+
+         </div>
+
+
+         <!-- address -->
+
+
+         <div class="form-group">
+
+
+            <label>
+               Address<input [class.is-invalid]="regform.get('address').invalid && regform.get('address').touched"
+                  style="width:300px ; height:30px" type="text" formControlName="address" class="form-control">
+            </label>
+
+            <!--  state  --> <label>State</label>
+            <div title="">
+               <select style="width:300px ; height:30px" placeholder="" class="form-control"
+                  [class.is-invalid]="regform.get('state').invalid && regform.get('state').touched"
+                  (change)=changecountrycount($event.target.value) formControlName="state">
+                  <option value="" selected disabled hidden></option>
+                  <option *ngFor="let count of countryList">{{count.name}} </option>
+               </select>
+            </div>
+
+
+            <!--  city  -->
+
+
+            <label>City</label>
+            <div title="">
+               <select style="width:300px ; height:30px" placeholder="" formControlName="city" class="form-control"
+                  [class.is-invalid]="regform.get('city').invalid && regform.get('city').touched">
+                  <option value="" selected disabled hidden>--select-- </option>
+                  <option *ngFor="let city of cities">{{city}} </option>
+               </select>
+            </div>
+
+
+            <!-- pin -->
+
+
+            <label>
+               Pin<input style="width:300px ; height:30px" type="number" formControlName="pin"
+                  [class.is-invalid]="regform.get('pin').invalid && regform.get('pin').touched" class="form-control">
+            </label>
+         </div>
+
+            <!-- lllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllll     -->
+
+
+
+            <div class="form-group">
+               <label for="my-input">Image</label>
+               <input  id="my-input" fromControlName="profpic" (change)="onFleLoad($event)" class="form-control" type="file" name="" accept="image/*">
+               <input  style="margin-top: 1cm" type="image" src="{{imgpath}}" height="200" width="250">
+               <br><label *ngIf="imgcheck" profpic.touched class="text-danger">Select Image</label>
+             </div>
+              <!-- <div> <label>Choose <input type="file" (change)="addfile($event)">
+              </label>                          </div>
+
+              <button class="btn btn-primary" (click)="uploadImage()">Upload</button> -->
+         <!-- <div>
+            <button type="button" class="btn btn-success btn-xs"
+            (click)="item.upload()" [disabled]="item.isReady || item.isUploading || item.isSuccess">
+        <span class="glyphicon glyphicon-upload"></span> Upload
+    </button>
+    <input type="file" ng2FileSelect [uploader]="uploader" />
+          </div> -->
+            <!-- lllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllll     -->
+
+         <div style="margin-top: 35px">
+            <button style=" margin-left:50px; width:1.3cm; height:1.3cm;box-shadow:white 1px 1px 20px 1px; color:black; border-radius:1cm" [disabled]="!regform.valid && imgcheck==true"
+               (click)="onclick()" type="submit" class="btn btn-primary">✓</button>
+            <button style=" border-radius:1cm ;width:1.3cm; height:1.3cm; margin-left: 100px ;box-shadow:white 1px 1px 20px 1px ;color:black;" class="btn btn-danger"
+               (click)="onExit()">X</button>
+
+         </div>
+
+    
+      </form>
+      <!-- {{regform.value | json}} 
+   -->
+
+
+
+   </div>

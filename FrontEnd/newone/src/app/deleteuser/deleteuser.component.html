@@ -1,0 +1,17 @@
+<div class="container-fluid" style="background-color:grey ;height:150px;width:270px">
+
+        <form [formGroup]="deleteuser">
+
+                <div class="form-group" style="margin-top: 40px">
+                        <label>Enter Email ID to Delete</label>
+                        <input [class.is-invalid]="deleteuser.get('email').invalid && deleteuser.get('email').touched" placeholder="Enter Email ID to Delete user" formControlName="email" type="text" class="form-control">
+
+                </div>
+
+
+        </form>
+        <button (click)="onClick()" type="submit" class="btn btn-primary">Delete</button>
+
+
+
+</div>

@@ -1,0 +1,28 @@
+.dis{
+    color:black;
+    text-align: center;
+
+    height:50px;
+}
+
+.lab{
+    color:red;
+}
+tr,th,td{
+    padding:10px;
+    
+}
+th{
+    background-color:black;
+    color:white;
+    box-shadow: black 3px 2px 3px 3px;
+}
+tr:hover{
+   font-variant: initial;
+   background-color:rgb(145, 140, 140)
+   
+}
+td:hover{
+    color:white;
+    background-color:rgb(90, 88, 88)
+   }

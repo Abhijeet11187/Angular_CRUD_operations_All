@@ -1,0 +1,122 @@
+<div style="background-color: cadetblue">
+        <div style="float:center;background-color: rgb(78, 78, 76);width:300px;margin-top:1cm" class="container">
+                <div>
+                        <form [formGroup]="updateForm" style="width:230px">
+                                <div>
+                                        <input [class.is-invalid]="updateForm.get('fname').invalid && updateForm.get('fname').touched"
+                                                formControlName="fname" placeholder="Enter Updated First Name"
+                                                type="text" class="form-control">
+
+                                </div>
+                                <div>
+
+                                        <input [class.is-invalid]="updateForm.get('lname').invalid && updateForm.get('lname').touched"
+                                                formControlName="lname" placeholder="Enter Updated last Name"
+                                                type="text" class="form-control">
+                                </div>
+                                <div>
+
+                                        <input [class.is-invalid]="updateForm.get('gender').invalid && updateForm.get('gender').touched"
+                                                formControlName="gender" placeholder="Enter Updated Gender" type="text"
+                                                class="form-control">
+                                </div>
+
+                                <div class="form-group">
+                                        <label for="my-select">Qualification</label>
+                                        <select formControlName="qualification" id="my-select" class="form-control"
+                                                name="">
+                                                <option>Graduate</option>
+                                                <option>Post-Graduate</option>
+                                                <option>HSC</option>
+                                                <option>SSC</option>
+                                        </select>
+                                </div>
+
+
+                                <div>
+                                       <label>Email</label>
+                                        <input [class.is-invalid]="updateForm.get('nemail').invalid && updateForm.get('nemail').touched"
+                                                formControlName="nemail" placeholder="Enter Updated Email" type="email"
+                                                name="email" class="form-control" ngModel email="true">
+                                </div>
+                                <div>
+                                        <label>Conact Number</label>
+                                        <input [class.is-invalid]="updateForm.get('contact').invalid && updateForm.get('contact').touched" type="number" class="form-control" formControlName="contact">
+                                </div>
+
+                                <div>Hobbies<br>
+
+                                        <label class="a"> <input type="checkbox" style="padding:20px"
+                                                        formControlName="isSinging" value="singing"> Singing </label>
+                                        <label class="a" style="text-align: right"> <input type="checkbox"
+                                                        style="margin-left: 25px" formControlName="isReading"
+                                                        value="reading"> Reading </label>
+                                        <label class="a"> <input type="checkbox" style="padding:20px"
+                                                        formControlName="isTravelling" value="travelling"> Travelling
+                                        </label>
+                                        <label class="a"> <input type="checkbox" style="margin-left: 10px"
+                                                        formControlName="isCooking" value="cooking"> Cooking </label>
+                                        <label class="a"> <input type="checkbox" style="padding:20px"
+                                                        formControlName="isDancing" value="dancing"> Dancing </label>
+                                        <label class="a"> <input type="checkbox" style="margin-left: 20px"
+                                                        formControlName="isSwimming" value="swimming"> Swimming </label>
+
+                                </div>
+
+
+                                <div class="form-group">
+
+
+                                        <label>
+                                                Address<input style="width:200px ; height:30px" type="text"
+                                                        formControlName="address" [class.is-invalid]="updateForm.get('address').invalid && updateForm.get('address').touched" class="form-control">
+                                        </label>
+                                        <label>State</label>
+                                    
+                                        <div title="">
+                                                <select style="width:200px ; height:30px" placeholder=""
+                                                        (change)=changecountrycount($event.target.value)
+                                                        formControlName="state">
+                                                        <option *ngFor="let count of countryList">{{count.name}}
+                                                        </option>
+                                                </select>
+                                        </div>
+
+                                        <label>City</label>
+                                        <div title="">
+                                                <select style="width:200px ; height:30px" placeholder=""
+                                                        formControlName="city">
+                                                        <option value="" selected disabled hidden>--Select City--</option>
+                                                        <option value={{city}} *ngFor="let city of cities">{{city}}
+                                                        </option>
+                                                </select>
+                                        </div>
+                                        <br>
+
+                                        <label>
+                                                Pin<input style="width:200px ; height:30px" type="number"
+                                                        formControlName="pin" [class.is-invalid]="updateForm.get('pin').invalid && updateForm.get('pin').touched" class="form-control">
+                                        </label>
+
+                                        <div class="form-group">
+                                                        <label for="my-input">Text</label>
+                                                        <input id="my-input" fromControlName="profpic" (change)="onFleLoad($event)" class="form-control" type="file" name="" accept="image/*">
+                                                        <input style="margin-top: 1cm" type="image" src="{{imgpath}}" height="200" width="250">
+                                                      </div>
+                                </div>
+
+                                <button [disabled]="!updateForm.valid" (click)="updatefunction()"
+                                        style="margin-top:30px;margin-bottom: 30px" type="submit"
+                                        class="btn btn-primary">Update</button>
+
+                                        
+
+
+                        </form>
+                </div>
+
+        </div>
+
+
+
+</div>
